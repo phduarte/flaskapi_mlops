@@ -1,0 +1,36 @@
+{
+	"info": {
+		"_postman_id": "0a907d31-2002-438b-a874-8ae831827ca8",
+		"name": "puc_mlops",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "predict",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sepal_length\": 5.1,\r\n    \"sepal_width\": 3.5,\r\n    \"petal_length\": 1.4,\r\n    \"petal_width\": 0.2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/predict",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"predict"
+					]
+				},
+				"description": "Executa um modelo de predição baseado em valores fornecidos pelo usuário"
+			},
+			"response": []
+		}
+	]
+}
