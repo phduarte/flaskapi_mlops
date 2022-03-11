@@ -1,10 +1,14 @@
+from unicodedata import numeric
 from flask import Flask, request, jsonify
+import pickle
+import numpy as np
 
 app = Flask(__name__)
+model = pickle.load(open('model.pkl', 'rb'))
 
 @app.route("/predict",methods=['POST'])
 def predict():
-
+    
     sepal_length = request.json.get("sepal_length")
     sepal_width = request.json.get("sepal_width")
     petal_length = request.json.get("petal_length")
@@ -15,9 +19,11 @@ def predict():
     if dic:
         return jsonify(dic), 400
 
-    classification = get_classification(sepal_length, sepal_width, petal_length, petal_width)
+    arr = np.array([[sepal_length, sepal_width, petal_length, petal_width]])
 
-    # return jsonify({"sepal_length":sepal_length, "sepal_width":sepal_width, "petal_length": petal_length, "petal_width":petal_width, "class":classification})
+    iris = model.predict(arr)[0]
+    classification = get_classification(iris)
+
     return jsonify({"class":classification})
 
 def validate(sl, sw, pl, pw) -> list:
@@ -31,8 +37,8 @@ def validate(sl, sw, pl, pw) -> list:
 
     return ret
 
-def get_classification(sl, sw, pl, pw):
-    return "Iris-versicolor"
+def get_classification(classification:numeric):
+    return {0:"Iris-setosa", 1: "Iris-versicolor", 2: "Iris-virginica"}[classification]
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5001)

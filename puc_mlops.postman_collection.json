@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"sepal_length\": 5.1,\r\n    \"sepal_width\": 3.5,\r\n    \"petal_length\": 1.4,\r\n    \"petal_width\": 0.2\r\n}",
+					"raw": "{\r\n    \"sepal_length\": 5.7,\r\n    \"sepal_width\": 5.5,\r\n    \"petal_length\": 5.4,\r\n    \"petal_width\": 6.2\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
